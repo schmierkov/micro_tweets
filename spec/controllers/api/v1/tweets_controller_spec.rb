@@ -57,6 +57,7 @@ RSpec.describe Api::V1::TweetsController, type: :controller do
         expect(json_response['tweets'].first).to have_key('id')
         expect(json_response['tweets'].first).to have_key('text')
         expect(json_response['tweets'].first).to have_key('username')
+        expect(json_response['tweets'].first).to have_key('name')
       end
     end
   end

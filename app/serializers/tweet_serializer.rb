@@ -1,8 +1,12 @@
 class TweetSerializer < ActiveModel::Serializer
-  attributes :id, :text, :username
+  attributes :id, :text, :username, :name
 
   def id
     object.data.id
+  end
+
+  def name
+    object.data.user["name"]
   end
 
   def username
