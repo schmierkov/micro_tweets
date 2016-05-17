@@ -20,6 +20,6 @@ class Api::V1::TweetsController < ApplicationController
   private
 
   def keyword
-    params[:keyword] || ""
+    (params[:keyword] || "").downcase
   end
 end
