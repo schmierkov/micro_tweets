@@ -1,0 +1,32 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+li label {
+  padding: 5px;
+  width: 100%;
+  border: 1px;
+  border-radius: 10px;
+}
+
+p.lead {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+blockquote {
+  padding: 5px;
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+blockquote p {
+  margin: 0;
+}
