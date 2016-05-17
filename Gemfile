@@ -4,6 +4,7 @@ gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'active_model_serializers'
 gem 'twitter'
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   gem 'dotenv-rails'
