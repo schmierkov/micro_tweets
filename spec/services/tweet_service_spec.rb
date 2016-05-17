@@ -8,8 +8,9 @@ RSpec.describe TweetService do
   describe '#store_tweets_for' do
     it 'calls search on twitter client with correct params' do
       expect(tweet_service).to receive(:client).and_return(client)
-      expect(client).to receive(:search).with('foobar -rt')
-        .and_return(fake_tweets)
+      expect(client).to receive(:search)
+        .with('foobar -rt', result_type: 'recent')
+          .and_return(fake_tweets)
 
       expect do
         tweet_service.store_tweets_for('foobar')
@@ -18,8 +19,9 @@ RSpec.describe TweetService do
 
     it 'does store tweet duplicates' do
       expect(tweet_service).to receive(:client).twice.and_return(client)
-      expect(client).to receive(:search).twice.with('foobar -rt')
-        .and_return(fake_tweets)
+      expect(client).to receive(:search).twice
+        .with('foobar -rt', result_type: 'recent')
+          .and_return(fake_tweets)
 
       expect do
         tweet_service.store_tweets_for('foobar')
