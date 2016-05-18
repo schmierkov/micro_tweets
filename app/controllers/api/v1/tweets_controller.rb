@@ -2,7 +2,6 @@ class Api::V1::TweetsController < ApplicationController
   respond_to :json
 
   skip_before_action :verify_authenticity_token
-  skip_before_filter :authenticate_user!
 
   def index
     if Tweet::KEYWORDS.include?(keyword)

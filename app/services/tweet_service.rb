@@ -3,7 +3,14 @@ class TweetService
     return unless Tweet::KEYWORDS.include?(keyword)
 
     Rails.logger.info "Starting tweet import for: #{keyword}"
-    tweets = client.search("#{keyword} -rt", result_type: "recent").take(100)
+    begin
+      tweets = client.search("#{keyword} -rt", result_type: "recent").take(100)
+    rescue *Twitter::Error.errors.values => e
+      # TODO: try to limit exceptions to be rescued
+      Rails.logger.error "Error during import: #{e}"
+      tweets = []
+    end
+
     tweets.each do |client_tweet|
       Tweet.find_or_create_by(tweet_id: client_tweet.id) do |tweet|
         tweet.keyword = keyword
