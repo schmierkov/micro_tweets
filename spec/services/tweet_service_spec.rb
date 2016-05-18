@@ -9,27 +9,29 @@ RSpec.describe TweetService do
     it 'calls search on twitter client with correct params' do
       expect(tweet_service).to receive(:client).and_return(client)
       expect(client).to receive(:search)
-        .with('foobar -rt', result_type: 'recent')
+        .with('nasa -rt', result_type: 'recent')
           .and_return(fake_tweets)
 
       expect do
-        tweet_service.store_tweets_for('foobar')
+        tweet_service.store_tweets_for('nasa')
       end.to change(Tweet, :count).by(2)
     end
 
     it 'does store tweet duplicates' do
       expect(tweet_service).to receive(:client).twice.and_return(client)
       expect(client).to receive(:search).twice
-        .with('foobar -rt', result_type: 'recent')
+        .with('nasa -rt', result_type: 'recent')
           .and_return(fake_tweets)
 
       expect do
-        tweet_service.store_tweets_for('foobar')
-        tweet_service.store_tweets_for('foobar')
+        tweet_service.store_tweets_for('nasa')
+        tweet_service.store_tweets_for('nasa')
       end.to change(Tweet, :count).by(2)
     end
 
     it 'returns nil if keyword is blank' do
+      expect(tweet_service).not_to receive(:client)
+
       expect(tweet_service.store_tweets_for('')).to be_nil
     end
   end

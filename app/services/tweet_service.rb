@@ -1,7 +1,8 @@
 class TweetService
   def store_tweets_for(keyword)
-    return if keyword.blank?
+    return unless Tweet::KEYWORDS.include?(keyword)
 
+    Rails.logger.info "Starting tweet import for: #{keyword}"
     tweets = client.search("#{keyword} -rt", result_type: "recent").take(100)
     tweets.each do |client_tweet|
       Tweet.find_or_create_by(tweet_id: client_tweet.id) do |tweet|
@@ -9,6 +10,7 @@ class TweetService
         tweet.json_payload = client_tweet.attrs.to_json
       end
     end
+    Rails.logger.info "Import done."
   end
 
   private
