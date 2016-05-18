@@ -1,8 +1,6 @@
 class Api::V1::TweetsController < ApplicationController
   respond_to :json
 
-  skip_before_action :verify_authenticity_token
-
   def index
     if Tweet::KEYWORDS.include?(keyword)
       # TODO: replace this logic by background worker that runs every ~5 min.
