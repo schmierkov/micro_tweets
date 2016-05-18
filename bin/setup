@@ -21,9 +21,6 @@ Dir.chdir APP_ROOT do
   system "bin/rake db:setup"
   system "bin/rake db:migrate"
 
-  puts "\n== Import twitter data =="
-  system "bin/rake twitter:import"
-
   puts "\n== Removing old logs and tempfiles =="
   system "rm -f log/*"
   system "rm -rf tmp/cache"
