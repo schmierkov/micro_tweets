@@ -6,7 +6,6 @@ gem 'pg', '~> 0.15'
 gem 'active_model_serializers'
 gem 'twitter'
 gem 'responders', '~> 2.0'
-gem 'jquery-rails'
 gem 'angularjs-rails'
 gem "twitter-bootstrap-rails"
 
