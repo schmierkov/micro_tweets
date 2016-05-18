@@ -4,7 +4,7 @@ class TweetService
 
     Rails.logger.info "Starting tweet import for: #{keyword}"
     begin
-      tweets = client.search("#{keyword} -rt", result_type: "recent").take(100)
+      tweets = client.search("#{keyword} -rt", result_type: "recent").take(10)
     rescue *Twitter::Error.errors.values => e
       # TODO: try to limit exceptions to be rescued
       Rails.logger.error "Error during import: #{e}"
