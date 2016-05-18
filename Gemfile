@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'puma'
 gem 'rails', '4.2.6'
-gem 'pg', '~> 0.15'
 gem 'active_model_serializers'
 gem 'twitter'
 gem 'responders', '~> 2.0'
@@ -13,6 +12,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -23,4 +23,8 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'webmock'
+end
+
+group :production do
+  gem 'pg', '~> 0.15'
 end
